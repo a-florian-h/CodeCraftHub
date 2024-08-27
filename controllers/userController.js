@@ -4,8 +4,10 @@ const bcrypt = require('bcrypt');
 // User registration
 exports.registerUser = async (req, res) => {
   try {
-    const { username, password } = req.body;
 
+    const { username, password } = req.body;
+    console.log("a call to register" + username, password)
+    
     // Check if the username already exists
     const existingUser = await User.findOne({ username });
     if (existingUser) {

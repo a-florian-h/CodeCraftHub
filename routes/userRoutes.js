@@ -2,13 +2,20 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-// User registration route
-router.post('/register', userController.registerUser);
+module.exports = (app) => {
+  // User registration route
+  router.post('/register', userController.registerUser);
 
-// User login route
-router.post('/login', userController.loginUser);
+  // User login route
+  router.post('/login', userController.loginUser);
 
-// User profile management route
-router.put('/:username', userController.updateUserProfile);
+  // User profile management route
+  router.put('/:username', userController.updateUserProfile);
 
-module.exports = router;
+  // Default route for root path
+  router.get('/', (req, res) => {
+    res.send('All is in order!');
+  });
+
+  app.use('/users', router);
+};
